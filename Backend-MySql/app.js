@@ -11,9 +11,8 @@ testConnection()
 const app = express()
 const port = process.env.PORT || 7005
 
-// ✅ CORS MUST COME BEFORE ROUTES
 app.use(cors({
-  origin: 'http://localhost:5173', // Vite frontend
+  origin: 'http://localhost:5173', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }))
@@ -36,3 +35,4 @@ app.get('/', (req, res) => res.send('Server Running 🚀'))
 app.listen(port, () =>
   console.log(`Server running on port ${port}`)
 )
+
