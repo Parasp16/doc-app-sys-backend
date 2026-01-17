@@ -21,7 +21,6 @@ router.post(
         return res.status(400).json({ msg: 'No file uploaded' })
       }
 
-      // ✅ DB UPDATE
       await User.update(
         { image: req.file.filename },
         { where: { id: req.user.id } }
@@ -39,3 +38,4 @@ router.post(
 )
 
 module.exports = router
+
