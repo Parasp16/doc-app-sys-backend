@@ -2,7 +2,6 @@ const Appointment = require("../models/appointmentModel");
 
 const User = require('../models/userModel')
 
-/* ================= CREATE APPOINTMENT ================= */
 async function createAppointment(req, res) {
   try {
     const { dateTime, doctorId } = req.body;
@@ -29,7 +28,6 @@ async function createAppointment(req, res) {
   }
 }
 
-/* ================= UPDATE STATUS BY DOCTOR ================= */
 async function statusUpdateByDoctor(req, res) {
   const { ID } = req.params;
 
@@ -60,7 +58,6 @@ async function statusUpdateByDoctor(req, res) {
   }
 }
 
-/* ================= UPDATE APPOINTMENT ================= */
 async function updateAppointment(req, res) {
   try {
     const { ID } = req.params;
@@ -92,7 +89,6 @@ async function updateAppointment(req, res) {
   }
 }
 
-/* ================= DELETE APPOINTMENT ================= */
 async function deleteAppointment(req, res) {
   try {
     const { ID } = req.params;
@@ -116,7 +112,6 @@ async function deleteAppointment(req, res) {
   }
 }
 
-/* ================= GET APPOINTMENTS BY USER ================= */
 async function getAppointmentsByUser(req, res) {
   try {
     const appointments = await Appointment.findAll({
@@ -136,7 +131,6 @@ async function getAppointmentsByUser(req, res) {
   }
 }
 
-/* ================= GET APPOINTMENTS OF DOCTOR ================= */
 async function showAppointmentsOfDoctor(req, res) {
   try {
     const appointments = await Appointment.findAll({
@@ -185,12 +179,10 @@ const getAllAppointments = async (req, res) => {
       whereCondition.createdBy = req.user.id
     }
 
-    // 🧑‍⚕️ DOCTOR → sirf apni
     if (req.user.role === "Doctor") {
       whereCondition.doctorId = req.user.id
     }
 
-    // 👨‍💼 ADMIN → sab (no where condition)
 
     const appointments = await Appointment.findAll({
       where: whereCondition,
@@ -219,3 +211,4 @@ module.exports = {
   showAppointmentsOfDoctor,
    getAllAppointments,
 };
+
