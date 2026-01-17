@@ -2,7 +2,6 @@ const multer = require('multer')
 const path = require('path')
 const fs = require('fs')
 
-// ensure uploads folder exists
 const uploadDir = 'uploads'
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir)
@@ -20,7 +19,6 @@ const storage = multer.diskStorage({
   }
 })
 
-// ✅ CORRECT NAME: fileFilter
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png']
 
@@ -35,8 +33,9 @@ const upload = multer({
   storage,
   fileFilter,
   limits: {
-    fileSize: 2 * 1024 * 1024 // 2MB limit
+    fileSize: 2 * 1024 * 1024 
   }
 })
 
 module.exports = upload
+
