@@ -9,14 +9,14 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST || 'localhost',
     port: process.env.DB_PORT || 3306,
     dialect: 'mysql',
-    logging: false, // disable SQL logs
+    logging: false, 
     define: {
       timestamps: true
     }
   }
 )
 
-// ================= TEST CONNECTION =================
+
 async function testConnection() {
   try {
     await sequelize.authenticate()
@@ -26,10 +26,10 @@ async function testConnection() {
   }
 }
 
-// ================= SYNC DB =================
+
 async function syncDB({ force = false, alter = false } = {}) {
   try {
-    // ⚠️ only for development
+    
     if (process.env.NODE_ENV === 'development') {
       await sequelize.sync({ force, alter })
       console.log("✅ Models synced")
@@ -39,11 +39,11 @@ async function syncDB({ force = false, alter = false } = {}) {
   }
 }
 
-// Auto sync (safe)
-// syncDB({ alter: true })
+
 
 module.exports = {
   sequelize,
   testConnection,
   syncDB
 }
+
