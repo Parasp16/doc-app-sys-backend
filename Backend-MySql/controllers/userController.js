@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 
-// ================= REGISTER =================
 const register = async (req, res) => {
   try {
     const { name, email, password, contactNumber, address } = req.body
@@ -45,7 +44,6 @@ const register = async (req, res) => {
   }
 }
 
-// ================= LOGIN =================
 const login = async (req, res) => {
   try {
     const { email, password } = req.body
@@ -78,7 +76,6 @@ const login = async (req, res) => {
   }
 }
 
-// ================= GET USER INFO =================
 const getUserInfo = async (req, res) => {
   try {
     const user = await User.findByPk(req.user.id, {
@@ -97,7 +94,6 @@ const getUserInfo = async (req, res) => {
   }
 }
 
-// ================= DOCTOR LIST (ADDED) =================
 const doctorList = async (req, res) => {
   try {
     const doctors = await User.findAll({
@@ -140,3 +136,4 @@ module.exports = {
   doctorList,
    getAllUsers 
 }
+
