@@ -42,7 +42,6 @@ const docStatus = async(req,res)=>{
     if(!getDoctor){
         res.status(400).send({msg:"Doctor not found", success:true})
     }else{
-         // 2️⃣ Update doctor status
     getDoctor.status = "Accepted";
     await getDoctor.save(); //
         if(getDoctor){
@@ -93,11 +92,11 @@ const deleteDoctor = (req,res)=>{
 const getAllDoctorRequests = async (req, res) => {
   try {
     const doctors = await Doctor.findAll({
-      where: { status: 'Pending' },   // sirf pending requests
+      where: { status: 'Pending' },   
       include: [
         {
           model: User,
-          as: 'user',                  // 👈 yahi relation use ho raha
+          as: 'user',                  
           attributes: ['id', 'name', 'email']
         }
       ]
@@ -139,6 +138,7 @@ const rejectDoctor = async (req, res) => {
     res.status(500).send({ msg: "Server Error" })
   }
 }
+
 
 
 module.exports = {applyDoctor,docStatus, getDoctorInfo,updateDoctor,deleteDoctor, getAllDoctorRequests, rejectDoctor}
